@@ -1,0 +1,37 @@
+WELCOME TO GUESSING GAME
+[only 5 attempts]       
+Let's start!
+Guess a number between 1 to 100
+ENTER THE NUMBER
+50
+Your guess is low.
+70
+Your guess is low.
+80
+Your guess is low.
+90
+Your guess is low.
+99
+Your guess is low.
+Oops! All attempts are over.
+The number is: 100
+WANNA PLAY AGAIN? (yes/no)
+yes
+WELCOME TO GUESSING GAME
+[only 5 attempts]
+Let's start!
+Guess a number between 1 to 100
+ENTER THE NUMBER
+60
+Your guess is low.
+80
+Your guess is high.
+70
+Your guess is high.
+67
+Your guess is high.
+64
+Congratulations! You have guessed it correctly.
+WANNA PLAY AGAIN? (yes/no)
+no
+Goodbye!
