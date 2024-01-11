@@ -1,7 +1,9 @@
 # codsoft-guessinggame
 **Guessing Game**
 Its an interesting guessing game with attempts.
-This Java program implements a simple guessing game where the user has to guess a random number between 1 and 100. The game allows up to 5 attempts, providing feedback on whether the guess is too high or too low. After each game, the user has the option to play again.
+This Java program implements a simple guessing game where the user has to guess a random number between 1 and 100. 
+The game allows up to 5 attempts, providing feedback on whether the guess is too high or too low. 
+After each game, the user has the option to play again.
 **How to Run**
 Make sure you have Java installed on your machine.
 Download the Guessinggame.java file.
@@ -19,7 +21,8 @@ You will be asked if you want to play again.
 **Classes**
 randomnumber: A class responsible for generating a random number within the specified range.
 
-Guessinggame: The main class that implements the guessing game. It uses the randomnumber class to generate random numbers and interacts with the user through the console.
+Guessinggame: The main class that implements the guessing game.
+It uses the randomnumber class to generate random numbers and interacts with the user through the console.
 
 **Enjoy the Game!**
 
