@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import java.util.Random;
+
+class randomnumber {
+    public int Randomnumber() {
+        Random random = new Random();
+        int minRange = 1;
+        int maxRange = 101;
+        return random.nextInt(maxRange - minRange + 1);
+    }
+}
+
+public class Guessinggame {
+    public static void main(String[] args) {
+        randomnumber randomnumbergenerator = new randomnumber();
+        Scanner scanner = new Scanner(System.in);
+
+        for (int i = 1; i <= 5; i++) { // Allow up to 5 games
+            System.out.println("WELCOME TO GUESSING GAME\n[only 5 attempts]");
+            System.out.println("Let's start!\nGuess a number between 1 to 100\nENTER THE NUMBER");
+
+            int randomnumber = randomnumbergenerator.Randomnumber();
+            int attempts = 5;
+
+            for (int attempt = 1; attempt <= attempts; attempt++) {
+                int inputnumber = scanner.nextInt();
+
+                if (inputnumber == randomnumber) {
+                    System.out.println("Congratulations! You have guessed it correctly.");
+                    break;
+                } else if (inputnumber < randomnumber) {
+                    System.out.println("Your guess is low.");
+                } else {
+                    System.out.println("Your guess is high.");
+                }
+
+                if (attempt == attempts) {
+                    System.out.println("Oops! All attempts are over.\nThe number is: " + randomnumber);
+                }
+            }
+
+            System.out.println("WANNA PLAY AGAIN? (yes/no)");
+            String yesOrNo = scanner.next();
+
+            if (!yesOrNo.equalsIgnoreCase("yes")) {
+                System.out.println("Goodbye!");
+                break;
+            }
+        }
+
+        scanner.close();
+    }
+}
