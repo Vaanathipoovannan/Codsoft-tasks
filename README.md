@@ -42,8 +42,8 @@ It uses the randomnumber class to generate random numbers and interacts with the
 
 **Enjoy the Game!**
 
-**TASK2**
 
+**TASK2**
 # codsoft-word-counter
 
 Its an exciting and time saving program for easy analysis of a string or file.
