@@ -1,0 +1,119 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class App extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("JavaFX Input Example");
+
+        // Create UI components
+        Label outputLabel = new Label("User Input: ");
+        TextField inputTextField = new TextField();
+        Button submitButton = new Button("Submit");
+
+        // Create a layout
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(inputTextField, submitButton, outputLabel);
+
+        // Set up the scene
+        Scene scene = new Scene(layout, 300, 200);
+        primaryStage.setScene(scene);
+
+        // Show the stage
+        primaryStage.show();
+
+        // Event handler for the button click
+        submitButton.setOnAction(e -> {
+            // Get the text from the TextField
+            String userInput = inputTextField.getText();
+
+            // Update the label with the user input
+            outputLabel.setText("User Input: " + userInput);
+
+            // If user input is '1', take string input; if '2', open file dialog
+            if (userInput.equals("string")) {
+                String inputString = getStringInput();
+                countAndDisplayWords(inputString);
+            } else if (userInput.equals("file")) {
+                file(primaryStage);
+            } else {
+                System.out.println("Invalid choice.");
+            }
+        });
+    }
+
+    private String getStringInput() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the string:");
+        return scanner.nextLine();
+    }
+
+    private void countAndDisplayWords(String input) {
+        // Split the string into words
+        String[] words = input.split(" ");
+
+        // Count the total number of words
+        int totalWords = words.length;
+        System.out.println("Total number of words: " + totalWords);
+
+        // Identify unique words using a Set
+        Set<String> uniqueWords = new HashSet<>();
+        for (String word : words) {
+            uniqueWords.add(word.toLowerCase()); // Ignore case for uniqueness
+        }
+
+        // Count the number of unique words
+        int uniqueWordsCount = uniqueWords.size();
+        System.out.println("Number of unique words: " + uniqueWordsCount);
+
+        // Display unique words
+        System.out.println("Unique words:");
+        for (String uniqueWord : uniqueWords) {
+            System.out.println(uniqueWord);
+        }
+    }
+
+    private void file(Stage primaryStage) {
+        // Create a FileChooser
+        FileChooser fileChooser = new FileChooser();
+
+        // Set the title for the file dialog
+        fileChooser.setTitle("Select a File");
+
+        // Show the file dialog and get the selected file
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+        // Check if a file was selected
+        if (selectedFile != null) {
+            System.out.println("Selected File: " + selectedFile.getAbsolutePath());
+
+            try {
+                Scanner fileScanner = new Scanner(selectedFile);
+                StringBuilder fileContent = new StringBuilder();
+
+                while (fileScanner.hasNext()) {
+                    fileContent.append(fileScanner.next()).append(" ");
+                }
+
+                // Count and display words from the file
+                countAndDisplayWords(fileContent.toString());
+            } catch (FileNotFoundException e) {
+                System.out.println("Error reading the file.");
+            }
+        } else {
+            System.out.println("No file selected.");
+        }
+    }
