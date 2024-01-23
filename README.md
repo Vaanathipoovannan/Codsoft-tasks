@@ -1,3 +1,5 @@
+**TASK1**
+
 # codsoft-guessinggame
 
 **Guessing Game**
@@ -39,6 +41,9 @@ The main class that implements the guessing game.
 It uses the randomnumber class to generate random numbers and interacts with the user through the console.
 
 **Enjoy the Game!**
+
+**TASK2**
+
 # codsoft-word-counter
 
 Its an exciting and time saving program for easy analysis of a string or file.
