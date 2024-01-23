@@ -1,0 +1,28 @@
+#gui box for selecting input type (string or file)
+
+#string
+Enter the string:
+this is good
+Total number of words: 3
+Number of unique words: 3
+Unique words:
+this
+is
+good
+
+#file
+Total number of words: 14
+Number of unique words: 12
+Unique words:
+input
+repeatation.
+this
+for
+task.
+is
+codsoft
+to
+check
+sample
+internship
+second
