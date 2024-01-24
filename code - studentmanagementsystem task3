@@ -1,0 +1,86 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+class Student {
+    String name;
+    int rollNumber;
+    String grade;
+    String comment;
+
+    public Student(String name, int rollNumber, String grade, String comment) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.grade = grade;
+        this.comment = comment;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getRollNumber() {
+        return rollNumber;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public String getcomment() {
+        return comment;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Roll Number: " + rollNumber + ", Grade: " + grade + ",comment:" + comment;
+    }
+}
+
+class StudentManagementSystem {
+    private List<Student> students;
+
+    public StudentManagementSystem() {
+        this.students = new ArrayList<>();
+        loadStudentsFromFile(); // Load existing students from file on system start
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+        saveStudentsToFile(); // Save the updated list to the file
+    }
+
+    public void removeStudent(int rollNumber) {
+        students.removeIf(student -> student.getRollNumber() == rollNumber);
+        saveStudentsToFile();
+    }
+
+    public Student searchStudent(int rollNumber) {
+        for (Student student : students) {
+            if (student.getRollNumber() == rollNumber) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public List<Student> getAllStudents() {
+        return new ArrayList<>(students);
+    }
+
+    private void loadStudentsFromFile() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("students.dat"))) {
+            students = (List<Student>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("No existing data file found. Starting with an empty student list.");
+        }
+    }
+
+    private void saveStudentsToFile() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("students.dat"))) {
+            oos.writeObject(students);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
