@@ -1,3 +1,4 @@
+#student list
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,3 +85,103 @@ class StudentManagementSystem {
         }
     }
 }
+
+#list management
+import java.util.Scanner;
+import java.util.List; // Add this import statement
+
+public class StudentManagementSystemApp {
+
+    private static Scanner scanner = new Scanner(System.in);
+    private static StudentManagementSystem studentManagementSystem = new StudentManagementSystem();
+
+    public static void main(String[] args) {
+        int choice;
+
+        do {
+            System.out.println("\nStudent Management System Menu:");
+            System.out.println("1. Add a new student");
+            System.out.println("2. Remove a student");
+            System.out.println("3. Search for a student");
+            System.out.println("4. Display all students");
+            System.out.println("5. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    addStudent();
+                    break;
+                case 2:
+                    removeStudent();
+                    break;
+                case 3:
+                    searchStudent();
+                    break;
+                case 4:
+                    displayAllStudents();
+                    break;
+                case 5:
+                    System.out.println("Exiting the application. Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+
+        } while (choice != 5);
+
+        scanner.close();
+    }
+
+    private static void addStudent() {
+        System.out.println("\nEnter student details:");
+        System.out.print("Name: ");
+        String name = scanner.next();
+        System.out.print("Roll Number: ");
+        int rollNumber = scanner.nextInt();
+        System.out.print("Grade: ");
+        String grade = scanner.next();
+        System.out.print("Comment: "); // Fix: Change Scanner.next() to scanner.next()
+        String comment = scanner.next();
+
+        Student newStudent = new Student(name, rollNumber, grade, comment);
+        studentManagementSystem.addStudent(newStudent);
+        System.out.println("Student added successfully!");
+    }
+
+    private static void removeStudent() {
+        System.out.print("Enter the Roll Number of the student to remove: ");
+        int rollNumber = scanner.nextInt();
+
+        studentManagementSystem.removeStudent(rollNumber);
+        System.out.println("Student removed successfully!");
+    }
+
+    private static void searchStudent() {
+        System.out.print("Enter the Roll Number of the student to search: ");
+        int rollNumber = scanner.nextInt();
+
+        Student foundStudent = studentManagementSystem.searchStudent(rollNumber);
+
+        if (foundStudent != null) {
+            System.out.println("Student found:\n" + foundStudent);
+        } else {
+            System.out.println("Student not found!");
+        }
+    }
+
+    private static void displayAllStudents() {
+        List<Student> allStudents = studentManagementSystem.getAllStudents();
+
+        if (allStudents.isEmpty()) {
+            System.out.println("No students in the system.");
+        } else {
+            System.out.println("\nAll Students in the System:");
+            for (Student student : allStudents) {
+                System.out.println(student);
+            }
+        }
+    }
+}
+
